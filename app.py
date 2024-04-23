@@ -27,7 +27,7 @@ def callback():
 def handle_message(event):
     message = event.message.text
     gemini_response = get_gemini_response(message)
-    line_bot_api.reply_message(event.reply_token, gemini_response)
+    line_bot_api.reply_message(event.reply_token, TextSendMessage(text=gemini_response))
 
 def get_gemini_response(user_message):
     response = model.generate_content(user_message)

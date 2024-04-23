@@ -31,7 +31,7 @@ def handle_message(event):
 
 def get_gemini_response(user_message):
     response = model.generate_content(user_message)
-    return response
+    return response.text
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))

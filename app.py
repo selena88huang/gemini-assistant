@@ -25,13 +25,13 @@ def callback():
 
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
-    message = TextSendMessage(text=event.message.text)
+    message = event.message.text
     gemini_response = get_gemini_response(message)
     line_bot_api.reply_message(event.reply_token, gemini_response)
 
 def get_gemini_response(user_message):
     response = model.generate_content(user_message)
-    return response
+    return response.text
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 5000))
